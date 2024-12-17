@@ -1,7 +1,9 @@
 package artcreator.creator.port;
 
-public interface Creator {
-	
-	void sysop(String str);
 
+import artcreator.config.Configuration;
+
+public interface Creator {
+	void loadImageFromPath(String path);
+	void startGeneration();
 }
