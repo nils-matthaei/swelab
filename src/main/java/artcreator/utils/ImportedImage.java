@@ -12,7 +12,6 @@ public class ImportedImage {
         this.width = width;
         this.height = height;
         this.pixelArray = new int[height][width]; // Initialize pixel array
-        this.raster = new Raster(); // Initialize raster
     }
 
     public int[][] getPixelArray() {
@@ -44,7 +43,7 @@ public class ImportedImage {
         int verticalCount = template.getVerticalStickCount();
 
         // Create a new Raster with the specified dimensions
-        raster = new Raster(horizontalCount, verticalCount);
+        this.raster = new Raster(horizontalCount, verticalCount);
 
         double elementWidth = (double) width / horizontalCount;
         double elementHeight = (double) height / verticalCount;
