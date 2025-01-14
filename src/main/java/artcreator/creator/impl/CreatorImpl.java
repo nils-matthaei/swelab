@@ -24,6 +24,8 @@ public class CreatorImpl implements Creator {
 		this.template.calcDimensions(importedImage, configuration);
 		this.importedImage.createRaster(this.template);
 		this.importedImage.getRaster().binaryRaster(this.configuration);
+		ImportedImage outImage =  this.importedImage.rasterToImage();
+		outImage.writeToFile("outFile", "png");
 	}
 	@Override
 	public void loadImageFromPath(String path) {
