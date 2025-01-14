@@ -14,8 +14,7 @@ public interface State {
 
 		INITIAL,
 		IMAGE_IMPORTED,
-		CONFIGURED,
-		CREATE_TEMPLATE;
+		CONFIGURED;
 
 		private List<State> subStates;
 

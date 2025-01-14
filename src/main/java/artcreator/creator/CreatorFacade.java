@@ -24,7 +24,7 @@ public class CreatorFacade implements CreatorFactory, Creator {
 
 	@Override
 	public void loadImageFromPath(String path) {
-		if (this.stateMachine.getState().isSubStateOf( S.CONFIGURED ))
+		if (this.stateMachine.getState().isSubStateOf( S.TEMPLATE_GENERATED ) || this.stateMachine.getState().isSubStateOf( S.INITIAL_STATE )) {}
 			this.creator.loadImageFromPath(path);
 	}
 
