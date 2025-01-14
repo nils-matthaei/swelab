@@ -37,7 +37,7 @@ class InitTest implements Observer {
 		Creator creator = CreatorFactory.FACTORY.creator();
 		Assertions.assertNotNull(creator);
 
-		creator.sysop("test");
+		creator.loadImageFromPath("../fuchs.jpg");
 		Assertions.assertTrue(true);
 
 	}
