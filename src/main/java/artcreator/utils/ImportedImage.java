@@ -1,6 +1,10 @@
 package artcreator.utils;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ImportedImage {
     private int[][] pixelArray; // 2D array to represent pixel values
@@ -64,7 +68,7 @@ public class ImportedImage {
         }
     }
 
-    public ImportedImage rasterToImage(Template template) {
+    public ImportedImage rasterToImage() {
         // Create a new ImportedImage with the same dimensions
         ImportedImage newImage = new ImportedImage(this.width, this.height);
 
@@ -99,6 +103,26 @@ public class ImportedImage {
         }
 
         return newImage; // Return the new image
+    }
+
+    public void writeToFile(String filePath, String format) {
+        // Create a BufferedImage to hold the pixel data
+        BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+        // Populate the BufferedImage with pixel data
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                bufferedImage.setRGB(x, y, pixelArray[y][x]); // Set the pixel color
+            }
+        }
+
+        // Write the BufferedImage to a file
+        try {
+            File outputFile = new File(filePath);
+            ImageIO.write(bufferedImage, format, outputFile); // Save the image
+        } catch (IOException e) {
+            System.err.println("Error writing image to file: " + e.getMessage());
+        }
     }
 
 
