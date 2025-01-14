@@ -20,7 +20,10 @@ public class CreatorImpl implements Creator {
 	}
 	@Override
 	public void startGeneration() {
-
+		this.template = new Template();
+		this.template.calcDimensions(importedImage, configuration);
+		this.importedImage.createRaster(this.template);
+		this.importedImage.getRaster().binaryRaster(this.configuration);
 	}
 	@Override
 	public void loadImageFromPath(String path) {

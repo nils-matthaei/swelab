@@ -8,9 +8,7 @@ public class Template {
     private int verticalStickCount;   // Number of vertical sticks
     private List<Stick> sticks;       // List of sticks
 
-    public Template(int horizontalStickCount, int verticalStickCount) {
-        this.horizontalStickCount = horizontalStickCount;
-        this.verticalStickCount = verticalStickCount;
+    public Template() {
         this.sticks = new ArrayList<>(); // Initialize the list of sticks
     }
 
@@ -40,6 +38,26 @@ public class Template {
     }
 
     public void calcDimensions(ImportedImage image, Configuration configuration) {
+        double aspectRatio = (double) image.getWidth() / image.getHeight();
+        int stickCount = configuration.getStickCount();
+        int maxHorizontalSticks = configuration.getTemplateWidth(); // Maximum sticks horizontally
+        int maxVerticalSticks = configuration.getTemplateHeight(); // Maximum sticks vertically
 
+        if (maxHorizontalSticks + maxVerticalSticks > stickCount) {
+
+            this.horizontalStickCount = (int) Math.round(Math.sqrt(stickCount * aspectRatio));
+            this.verticalStickCount = (int) Math.round(Math.sqrt(stickCount / aspectRatio));
+
+            while (this.horizontalStickCount + this.verticalStickCount > stickCount) {
+                if (this.horizontalStickCount > this.verticalStickCount) {
+                    this.horizontalStickCount--;
+                } else {
+                    this.verticalStickCount--;
+                }
+            }
+        } else {
+            this.horizontalStickCount = maxHorizontalSticks;
+            this.verticalStickCount = maxVerticalSticks;
+        }
     }
 }
