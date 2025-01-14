@@ -27,9 +27,7 @@ class InitTest implements Observer {
 		Assertions.assertEquals(stateMachine, subject);
 		subject.attach(this);
 
-		Assertions.assertTrue(stateMachine.getState().isSubStateOf(S.CREATE_TEMPLATE));
-		Assertions.assertEquals(S.CREATE_TEMPLATE, this.s);
-		subject.detach(this);
+
 
 		Domain domain = DomainFactory.FACTORY.domain();
 		Assertions.assertNotNull(domain);
@@ -37,8 +35,13 @@ class InitTest implements Observer {
 		Creator creator = CreatorFactory.FACTORY.creator();
 		Assertions.assertNotNull(creator);
 
-		creator.loadImageFromPath("../fuchs.jpg");
-		Assertions.assertTrue(true);
+		creator.loadImageFromPath("src/main/fuchs.jpg");
+
+		Assertions.assertTrue(stateMachine.getState().isSubStateOf(S.IMAGE_IMPORTED));
+		Assertions.assertEquals(S.IMAGE_IMPORTED, this.s);
+		subject.detach(this);
+
+		creator.startGeneration();
 
 	}
 

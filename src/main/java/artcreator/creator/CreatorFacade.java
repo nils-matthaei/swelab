@@ -1,6 +1,5 @@
 package artcreator.creator;
 
-import artcreator.config.Configuration;
 import artcreator.creator.impl.CreatorImpl;
 import artcreator.creator.port.Creator;
 import artcreator.domain.DomainFactory;
@@ -26,13 +25,13 @@ public class CreatorFacade implements CreatorFactory, Creator {
 	public void loadImageFromPath(String path) {
 		if (this.stateMachine.getState().isSubStateOf( S.TEMPLATE_GENERATED ) || this.stateMachine.getState().isSubStateOf( S.INITIAL_STATE )) {}
 			this.creator.loadImageFromPath(path);
-		this.stateMachine.setState(S.IMAGE_IMPORTED);
+			this.stateMachine.setState(S.IMAGE_IMPORTED);
 	}
 
 	@Override
 	public synchronized void startGeneration() {
 		if (this.stateMachine.getState().isSubStateOf( S.IMAGE_IMPORTED ))
 			this.creator.startGeneration();
-		this.stateMachine.setState(S.TEMPLATE_GENERATED);
+			this.stateMachine.setState(S.TEMPLATE_GENERATED);
 	}
 }

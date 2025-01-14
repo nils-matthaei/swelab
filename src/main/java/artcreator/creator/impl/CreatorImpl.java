@@ -49,4 +49,8 @@ public class CreatorImpl implements Creator {
 
 		this.importedImage = importedImage;
 	}
+
+	public ImportedImage getImportedImage() {
+		return importedImage;
+	}
 }
