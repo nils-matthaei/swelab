@@ -2,10 +2,7 @@ package artcreator.gui;
 
 import java.util.TooManyListenersException;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import artcreator.creator.CreatorFactory;
 import artcreator.creator.port.Creator;
@@ -26,8 +23,9 @@ public class CreatorFrame extends JFrame implements Observer {
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 500;
 
-	private JButton btn = new JButton("Hello SWE");
+	private JButton btn = new JButton("Import Image");
 	private JPanel panel = new JPanel();
+	private JTextField textField = new JTextField();
 
 	public CreatorFrame() throws TooManyListenersException {
 		super("ArtCreator");
@@ -40,10 +38,18 @@ public class CreatorFrame extends JFrame implements Observer {
 		/* build view */
 		this.btn.addActionListener(this.controller);
 		this.panel.add(this.btn);
+
+		textField.setBounds(50, 30, 200, 300);
+		this.panel.add(textField);
+
 		this.getContentPane().add(this.panel);
+
 	}
 
 	public void update(State newState) {
 		/* modify view if necessary */}
 
+	public String getTextFieldContents() {
+		return textField.getText(); // Method to get the text field contents
+	}
 }

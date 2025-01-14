@@ -30,7 +30,11 @@ public class Controller implements ActionListener, Observer {
 		/* read input */
 		String str = (((JButton) e.getSource()).getText());
 
-		CompletableFuture.runAsync(() -> this.myModel.sysop(str));
+
+		if(str.equals("Import Image")){
+			String path = this.myView.getTextFieldContents();
+			CompletableFuture.runAsync(() -> this.myModel.loadImageFromPath(path));
+		}
 	}
 
 	public void update(State newState) {
