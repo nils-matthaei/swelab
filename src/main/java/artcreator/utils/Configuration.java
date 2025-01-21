@@ -9,10 +9,10 @@ public class Configuration {
 
     // Default constructor
     public Configuration() {
-        this.templateWidth = 640;      // Default value for templateWidth
-        this.templateHeight = 480;     // Default value for templateHeight
-        this.binaryThreshold = 0.5f;    // Default value for binaryThreshold
-        this.stickCount = 10;           // Default value for stickCount
+        this.templateWidth = 1250;      // Default value for templateWidth
+        this.templateHeight = 2000;     // Default value for templateHeight
+        this.binaryThreshold = 0.6f;    // Default value for binaryThreshold
+        this.stickCount = 1000;           // Default value for stickCount
     }
 
     // Getters and Setters

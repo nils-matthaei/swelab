@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class ImportedImage {
     private int[][] pixelArray; // 2D array to represent pixel values
@@ -74,24 +75,24 @@ public class ImportedImage {
 
         // Get the number of horizontal and vertical sticks from the raster
         int horizontalCount = this.raster.getElements().length; // Assuming elements are added in a grid
-        int verticalCount = raster.getElements()[0].length; // Assuming elements are added in a grid
+        int verticalCount = this.raster.getElements()[0].length; // Assuming elements are added in a grid
 
         // Calculate the width and height of each RasterElement
         double elementWidth = (double) width / horizontalCount;
         double elementHeight = (double) height / verticalCount;
 
         // Fill the new image's pixel array based on the raster elements
-        for (int y = 0; y < verticalCount; y++) {
-            for (int x = 0; x < horizontalCount; x++) {
+        for (int y = 0; y < horizontalCount; y++) {
+            for (int x = 0; x < verticalCount; x++) {
                 // Get the RasterElement
-                RasterElement element = raster.getElements()[y][(y * horizontalCount + x)];
+                RasterElement element = raster.getElement(x,y);
                 Color color = element.getColor();
 
                 // Calculate the pixel range for this RasterElement
-                int startX = (int) (x * elementWidth);
-                int startY = (int) (y * elementHeight);
-                int endX = (int) Math.min((x + 1) * elementWidth, width);
-                int endY = (int) Math.min((y + 1) * elementHeight, height);
+                int startX = (int) (y * elementWidth);
+                int startY = (int) (x * elementHeight);
+                int endX = (int) Math.min((y + 1) * elementWidth, width);
+                int endY = (int) Math.min((x + 1) * elementHeight, height);
 
                 // Set the color for all pixels covered by this RasterElement
                 for (int py = startY; py < endY; py++) {

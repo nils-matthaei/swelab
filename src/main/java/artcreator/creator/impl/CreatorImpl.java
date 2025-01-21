@@ -25,7 +25,7 @@ public class CreatorImpl implements Creator {
 		this.importedImage.createRaster(this.template);
 		this.importedImage.getRaster().binaryRaster(this.configuration);
 		ImportedImage outImage =  this.importedImage.rasterToImage();
-		outImage.writeToFile("outFile", "png");
+		outImage.writeToFile("outFile.png", "png");
 	}
 	@Override
 	public void loadImageFromPath(String path) {

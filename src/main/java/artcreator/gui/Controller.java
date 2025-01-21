@@ -35,6 +35,10 @@ public class Controller implements ActionListener, Observer {
 			String path = this.myView.getTextFieldContents();
 			CompletableFuture.runAsync(() -> this.myModel.loadImageFromPath(path));
 		}
+
+		if(str.equals("Start generation")){
+			CompletableFuture.runAsync(() -> this.myModel.startGeneration());
+		}
 	}
 
 	public void update(State newState) {
