@@ -83,20 +83,17 @@ public class ImportedImage {
         // Fill the new image's pixel array based on the raster elements
         for (int y = 0; y < verticalCount; y++) {
             for (int x = 0; x < horizontalCount; x++) {
-                // Get the RasterElement
-                RasterElement element = raster.getElements()[y][(y * horizontalCount + x)];
+                RasterElement element = raster.getElements()[y][x];
                 Color color = element.getColor();
 
-                // Calculate the pixel range for this RasterElement
                 int startX = (int) (x * elementWidth);
                 int startY = (int) (y * elementHeight);
-                int endX = (int) Math.min((x + 1) * elementWidth, width);
-                int endY = (int) Math.min((y + 1) * elementHeight, height);
+                int endX = Math.min((int) ((x + 1) * elementWidth), width);
+                int endY = Math.min((int) ((y + 1) * elementHeight), height);
 
-                // Set the color for all pixels covered by this RasterElement
                 for (int py = startY; py < endY; py++) {
                     for (int px = startX; px < endX; px++) {
-                        newImage.setPixel(px, py, color.getRGB()); // Set the pixel color
+                        newImage.setPixel(px, py, color.getRGB());
                     }
                 }
             }
