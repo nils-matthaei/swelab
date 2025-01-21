@@ -81,7 +81,7 @@ public class CreatorFrame extends JFrame implements Observer {
             Image scaledImage = imageIcon.getImage().getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
             ImageIcon scaledIcon = new ImageIcon(scaledImage);
             this.imageLabel.setIcon(scaledIcon);
-            this.imageLabel.setText(""););
+            this.imageLabel.setText("");
             this.panel.revalidate();
             this.panel.repaint();
         }
